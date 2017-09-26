@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout>
+    <!--<default>
+        <reference name="head">
+            <block type="easymarketing/page_tracker" name="motive_easymarketing_site_googleverification" template="easymarketing/page/head/googleverification.phtml" after="-" />
+        </reference>
+
+        <referenceContainer name="before_body_end">
+            <block type="easymarketing/page_tracker" template="easymarketing/page/body/googleremarketing.phtml" name="motive_easymarketing_site_googleremarketing" after="-" />
+        </referenceContainer>
+    </default>-->
+
+    <checkout_cart_index>
+        <referenceBlock name="head">
+            <block type="easymarketing/page_tracker" template="easymarketing/page/head/facebookleadtracker.phtml" name="motive_easymarketing_site_facebookleadtracker" after="-" />
+        </referenceBlock>
+
+        <referenceContainer name="before_body_end">
+            <block type="easymarketing/page_tracker" template="easymarketing/page/body/googleleadtracker.phtml" name="motive_easymarketing_site_googleleadtracker" after="-" />
+        </referenceContainer>
+    </checkout_cart_index>
+</layout>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <emtab translate="label" module="easymarketing">
+            <label>Easymarketing</label>
+            <sort_order>100</sort_order>
+        </emtab>
+    </tabs>
+    <sections>
+        <easymarketingsection translate="label" module="easymarketing">
+            <label>API</label>
+            <tab>emtab</tab>
+            <sort_order>1000</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+
+            <groups>
+                <easmarketinggeneral translate="label" module="easymarketing" sortOrder="10">
+                    <label>Allgemein</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+
+                    <fields>
+                        <enable translate="label">
+                            <label>Aktiviert</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enable>
+                        <extractionstatus translate="label">
+                            <label>Status:</label>
+                            <comment></comment>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_status</frontend_model>
+                        </extractionstatus>
+                        <shop_token translate="label">
+                            <label>Shop Token</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_disable</frontend_model>
+                            <frontend_class>input-disabled</frontend_class>
+                        </shop_token>
+                        <access_token translate="label">
+                            <label>Access Token</label>
+                            <comment>Bitte kopieren Sie diesen Token von Ihrem Easymarketing Account.</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </access_token>
+                        <rootcategory translate="label">
+                            <label>Root Kategorie</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>easymarketing/system_config_source_categorylist</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </rootcategory>
+                        <shipping_countries translate="label">
+                            <label>Länderkürzel zum Versand</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shipping_countries>
+                        <google_verification translate="label">
+                            <label></label>
+                            <comment></comment>
+                            <frontend_type>button</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_googleverification</frontend_model>
+                        </google_verification>
+                        <google_tracking_enable translate="label">
+                            <label>Google Tracking Aktivieren</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </google_tracking_enable>
+                        <google_remarketing_enable translate="label">
+                            <label>Google Remarketing Aktivieren</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </google_remarketing_enable>
+                        <facebook_tracking_enable translate="label">
+                            <label>Facebook Tracking Aktivieren</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </facebook_tracking_enable>
+                    </fields>
+                </easmarketinggeneral>
+                <easymarketingassign translate="label" module="easymarketing">
+                    <label>Felderzuordnung</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+
+                    <fields>
+                        <name translate="label">
+                            <label>name</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </name>
+                        <useshortdescription translate="label">
+                            <label>Kurzbeschreibung verwenden</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </useshortdescription>
+                        <gtin translate="label">
+                            <label>gtin</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </gtin>
+                        <condition translate="label">
+                            <label>condition</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </condition>
+                        <google_category translate="label">
+                            <label>google_category</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </google_category>
+                        <adult translate="label">
+                            <label>adult</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </adult>
+                        <brand translate="label">
+                            <label>brand</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </brand>
+                        <mpn translate="label">
+                            <label>mpn</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </mpn>
+                        <unit_pricing_measure translate="label">
+                            <label>unit_pricing_measure</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </unit_pricing_measure>
+                        <unit_pricing_base_measure translate="label">
+                            <label>unit_pricing_base_measure</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </unit_pricing_base_measure>
+                        <gender translate="label">
+                            <label>gender</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </gender>
+                        <age_group translate="label">
+                            <label>age_group</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </age_group>
+                        <color translate="label">
+                            <label>color</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </color>
+                        <size translate="label">
+                            <label>size</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </size>
+                        <size_type translate="label">
+                            <label>size_type</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>150</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </size_type>
+                        <size_system translate="label">
+                            <label>size_system</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </size_system>
+                        <material translate="label">
+                            <label>material</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </material>
+                        <pattern translate="label">
+                            <label>pattern</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </pattern>
+                        <free_1 translate="label">
+                            <label>free_1</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </free_1>
+                        <free_2 translate="label">
+                            <label>free_2</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </free_2>
+                        <free_3 translate="label">
+                            <label>free_3</label>
+                            <comment></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
+                        </free_3>
+                    </fields>
+                </easymarketingassign>
+            </groups>
+        </easymarketingsection>
+    </sections>
+</config>
