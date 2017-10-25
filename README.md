@@ -2,7 +2,7 @@
 
 1. Backup der Files und der Datenbank des Shops erstellen.  
 
-2. Zip von Github (https://github.com/motivecross/easymarketing-magento1/archive/master.zip) herunterladen und komplett im Magento Root-Verzeichnis entpacken und evtl. Dateirechte anpassen.  
+2. Zip von Github (https://github.com/motivecross/easymarketing-magento1/archive/master.zip) herunterladen und die Ordner app und skin komplett ins Magento Root-Verzeichnis kopieren. Evtl. Dateirechte anpassen.  
 
 3. Im Backend unter "System->Cache Management" den Magento Cache leeren.  
 
