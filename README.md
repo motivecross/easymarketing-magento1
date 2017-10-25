@@ -1,6 +1,6 @@
 ## Easymarketing Modul für Magento 1
 
-1. Backup der Files und der Datenbank des Shops erstellen.  
+1. Backup der Dateien und der Datenbank des Shops erstellen.  
 
 2. Zip von Github (https://github.com/motivecross/easymarketing-magento1/archive/master.zip) herunterladen und die Ordner app und skin komplett ins Magento Root-Verzeichnis kopieren. Evtl. Dateirechte anpassen.  
 
