@@ -100,7 +100,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
             $resultArray = array('id' => $category->getId(),
                 'name' => $category->getName(),
-                //'url' => $this->_categoryHelper->getCategoryUrl($category),
+                'url' => $category->getUrl(),
                 'children' => $children
             );
 
@@ -125,13 +125,50 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
             $offset = $limit = 0;
 
-            $collection = Mage::getModel('catalog/product')->getCollection();
-            $collection->setOrder('id', 'ASC');
-            $collection->addAttributeToSelect('*');
-            $collection->addAttributeToFilter('status', '1');
-            $collection->addAttributeToFilter('type_id', array('neq' => 'bundle'));
-            $collection->addAttributeToFilter('type_id', array('neq' => 'configurable'));
-            $collection->addAttributeToFilter('type_id', array('neq' => 'grouped'));
+            // Filter out parent Ids that are disabled
+            $collectionConfigurable = Mage::getModel('catalog/product')->getCollection()
+                ->addAttributeToSelect('id')
+                ->addAttributeToFilter('status', '1')
+                ->addWebsiteFilter(Mage::app()->getWebsite()->getId())
+                ->addAttributeToFilter('visibility', array(Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH, Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG, Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_SEARCH))
+                ->addAttributeToFilter('type_id', array('eq' => 'configurable'));
+            $collectionConfigurableIds = [];
+            foreach($collectionConfigurable as $coll) {
+                $collectionConfigurableIds[] = $coll->getId();
+            }
+
+            // Filter out products without parent that are invisible
+            $collectionSimpleInvisible = Mage::getModel('catalog/product')->getCollection()
+                ->setOrder('id', 'ASC')
+                ->addAttributeToSelect('*')
+                ->addAttributeToFilter('status', '1')
+                ->addWebsiteFilter(Mage::app()->getWebsite()->getId())
+                ->addAttributeToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE)
+                ->addAttributeToFilter('type_id', array('nin' => ['bundle', 'configurable', 'grouped']));
+            $collectionSimpleInvisible->joinTable('catalog/product_relation', 'child_id=entity_id', array(
+                'parent_id' => 'parent_id'
+            ), null, 'left')->addAttributeToFilter(array(
+                array('attribute' => 'parent_id', 'null' => true)));
+            $collectionSimpleInvisibleIds = [];
+            foreach($collectionSimpleInvisible as $coll) {
+                $collectionSimpleInvisibleIds[] = $coll->getId();
+            }
+
+            $collection = Mage::getModel('catalog/product')->getCollection()
+                ->setOrder('id', 'ASC')
+                ->addAttributeToSelect('*')
+                ->addAttributeToFilter('status', '1')
+                ->addWebsiteFilter(Mage::app()->getWebsite()->getId())
+                ->addAttributeToFilter('type_id', array('nin' => ['bundle', 'configurable', 'grouped']))
+                ->addFieldToFilter('entity_id', array('nin' => $collectionSimpleInvisibleIds));
+
+            if(!empty($collectionConfigurableIds)) {
+                $collection->joinTable('catalog/product_relation', 'child_id=entity_id', array(
+                    'parent_id' => 'parent_id'
+                ), null, 'left')->addAttributeToFilter(array(
+                    array('attribute' => 'parent_id', 'null' => true),
+                    array('attribute' => 'parent_id', 'in' => $collectionConfigurableIds)));
+            }
 
             if(is_numeric($params['limit']) && $params['limit'] > 0) {
                 $limit = $params['limit'];
@@ -139,18 +176,35 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                     $offset = $params['offset'];
                 }
 
-                $collection->getSelect()->limit($limit, $offset);
+                $collection->getSelect()->limit($limit, $offset)->group('e.entity_id');
             }
+
+            $this->_helper->log((string)$collection->getSelect());
 
             $productsArray = array();
             foreach($collection->getItems() as $item) {
+
                 $product = array();
                 $productId = $item->getId();
+
+                $parentIDs = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($productId);
+
+                // Check if product is available
+                $websiteIds = $item->getWebsiteIds();
+                $categoryIds = $item->getCategoryIds();
+                $productUrl = $item->getProductUrl();
+                if(empty($websiteIds) || empty($categoryIds) || $item->getVisibility() == 1) {
+                    if(!empty($parentIDs)) {
+                        $parentProduct = Mage::getModel('catalog/product')->load($parentIDs[0]);
+                        $websiteIds = $parentProduct->getWebsiteIds();
+                        $categoryIds = $parentProduct->getCategoryIds();
+                        $productUrl = $parentProduct->getProductUrl();
+                    }
+                }
+
                 $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($item);
 
                 $product['id'] = intval($productId);
-
-                $parentIDs = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($productId);
 
                 $name = $this->getMappedConfig('name', $item);
                 if(empty($name)) {
@@ -164,7 +218,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                     $product['description'] = $item->getDescription();
                 }
 
-                $product['categories'] = $item->getCategoryIds();
+                $product['categories'] = $categoryIds;
 
                 $condition = $this->getMappedConfig('condition', $item);
                 $conditionPossibilities = array('new', 'refurbished', 'used');
@@ -185,11 +239,11 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                 if($item->getTypeId() == "configurable") {
                     $children = $item->getTypeInstance()->getUsedProducts($item);
                     $price = 9999999;
-                    foreach ($children as $child){
+                    foreach($children as $child) {
                         if($child->getPrice() < $price) {
                             $price = $child->getPrice();
                             $shippingProductId = $child->getId();
-                            $stockItem = $this->_stockItemRepository->get($shippingProductId);
+                            $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($child);
                         }
                     }
                 }
@@ -203,12 +257,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
                 $product['price'] = floatval($price);
 
-                if($item->getVisibility() == 1 && !empty($parentIDs)) {
-                    $urlProduct = Mage::getModel('catalog/product')->load($parentIDs[0]);
-                    $product['url'] = $urlProduct->getProductUrl();
-                } else {
-                    $product['url'] = $item->getProductUrl();
-                }
+                $product['url'] = $productUrl;
 
                 if($item->getImage() == 'no_selection') {
                     $product['image_url'] = '';
@@ -269,7 +318,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                         $stockItem->save();
                     }*/
                 } catch(Exception $exception) {
-                    $errorMessage = $exception->getFile() . " - " . $exception->getLine() . ": " . $exception->getMessage() . "\n". $exception->getTraceAsString();
+                    $errorMessage = $exception->getFile() . " - " . $exception->getLine() . ": " . $exception->getMessage() . "\n" . $exception->getTraceAsString();
                     $this->_helper->error($errorMessage);
                     $shippingArray = array();
                 }
