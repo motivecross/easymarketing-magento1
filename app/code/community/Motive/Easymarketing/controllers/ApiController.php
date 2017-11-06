@@ -184,6 +184,8 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
             $productsArray = array();
             foreach($collection->getItems() as $item) {
 
+                $item->load();
+
                 $product = array();
                 $productId = $item->getId();
 
