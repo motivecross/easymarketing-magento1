@@ -240,6 +240,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                 }
 
                 $shippingProductId = 0;
+
                 $price = $item->getPrice();
                 if($item->getTypeId() == "configurable") {
                     $children = $item->getTypeInstance()->getUsedProducts($item);
@@ -251,6 +252,16 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                             $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($child);
                         }
                     }
+                }
+
+                if($this->_helper->getConfig('tax/calculation/price_includes_tax') === "0") {
+                    $store = Mage::app()->getStore();
+                    $taxCalculation = Mage::getModel('tax/calculation');
+                    $request = $taxCalculation->getRateRequest(null, null, null, $store);
+                    $taxClassId = $item->getTaxClassId();
+                    $percent = $taxCalculation->getRate($request->setProductClassId($taxClassId));
+
+                    $price = $price + ($price * $percent / 100);
                 }
 
                 $quantity = $stockItem->getQty();
@@ -314,6 +325,17 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                         if($currentPrice == 9999999) {
                             continue;
                         } else {
+
+                            if($this->_helper->getConfig('tax/calculation/shipping_includes_tax') === "0") {
+                                $store = Mage::app()->getStore();
+                                $taxCalculation = Mage::getModel('tax/calculation');
+                                $request = $taxCalculation->getRateRequest(null, null, null, $store);
+                                $taxClassId = $item->getTaxClassId();
+                                $percent = $taxCalculation->getRate($request->setProductClassId($taxClassId));
+
+                                $currentPrice = $currentPrice + ($currentPrice * $percent / 100);
+                            }
+
                             $shippingArray[] = array('country' => $country, 'price' => floatval($currentPrice));
                         }
                     }
