@@ -159,8 +159,11 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                 ->addAttributeToSelect('*')
                 ->addAttributeToFilter('status', '1')
                 ->addWebsiteFilter(Mage::app()->getWebsite()->getId())
-                ->addAttributeToFilter('type_id', array('nin' => ['bundle', 'configurable', 'grouped']))
-                ->addFieldToFilter('entity_id', array('nin' => $collectionSimpleInvisibleIds));
+                ->addAttributeToFilter('type_id', array('nin' => ['bundle', 'configurable', 'grouped']));
+
+            if(!empty($collectionSimpleInvisibleIds)) {
+                $collection->addFieldToFilter('entity_id', array('nin' => $collectionSimpleInvisibleIds));
+            }
 
             if(!empty($collectionConfigurableIds)) {
                 $collection->joinTable('catalog/product_relation', 'child_id=entity_id', array(
