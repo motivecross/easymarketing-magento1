@@ -145,6 +145,16 @@
                             <show_in_store>0</show_in_store>
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </name>
+                        <setproductnamebeforemappedname>
+                            <label>Produktnamen vor manuell ausgewählte Attribute setzen</label>
+                            <comment></comment>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </setproductnamebeforemappedname>
                         <useshortdescription translate="label">
                             <label>Kurzbeschreibung verwenden</label>
                             <comment></comment>
