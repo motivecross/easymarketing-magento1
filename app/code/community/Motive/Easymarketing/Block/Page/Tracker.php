@@ -40,9 +40,9 @@ class Motive_Easymarketing_Block_Page_Tracker extends Mage_Core_Block_Template
             try {
                 $orderId = Mage::getSingleton('checkout/session')->getLastOrderId();
                 $order = Mage::getModel('sales/order')->load($orderId);
-                $subTotal = $order->getSubtotal();
+                $total = $order->getGrandTotal();
 
-                $code = str_replace('1.00', $subTotal, $code);
+                $code = str_replace('1.00', $total, $code);
 
             } catch(Exception $exception) {
                 $errorMessage = $exception->getFile() . " - " . $exception->getLine() . ": " . $exception->getMessage() . "\n" . $exception->getTraceAsString();
@@ -62,9 +62,9 @@ class Motive_Easymarketing_Block_Page_Tracker extends Mage_Core_Block_Template
             try {
                 $orderId = Mage::getSingleton('checkout/session')->getLastOrderId();
                 $order = Mage::getModel('sales/order')->load($orderId);
-                $subTotal = $order->getSubtotal();
+                $total = $order->getGrandTotal();
 
-                $code = str_replace('0.00', $subTotal, $code);
+                $code = str_replace('0.00', $total, $code);
 
             } catch(Exception $exception) {
                 $errorMessage = $exception->getFile() . " - " . $exception->getLine() . ": " . $exception->getMessage() . "\n" . $exception->getTraceAsString();
