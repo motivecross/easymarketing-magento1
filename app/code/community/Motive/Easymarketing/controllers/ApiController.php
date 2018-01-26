@@ -241,13 +241,13 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
                 $shippingProductId = 0;
 
-                $price = $item->getPrice();
+                $price = $item->getFinalPrice();
                 if($item->getTypeId() == "configurable") {
                     $children = $item->getTypeInstance()->getUsedProducts($item);
                     $price = 9999999;
                     foreach($children as $child) {
-                        if($child->getPrice() < $price) {
-                            $price = $child->getPrice();
+                        if($child->getFinalPrice() < $price) {
+                            $price = $child->getFinalPrice();
                             $shippingProductId = $child->getId();
                             $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($child);
                         }
