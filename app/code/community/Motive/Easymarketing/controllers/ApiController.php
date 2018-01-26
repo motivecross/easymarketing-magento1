@@ -214,6 +214,10 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                 $name = $this->getMappedConfig('name', $item);
                 if(empty($name)) {
                     $name = $item->getName();
+                } else {
+                    if($this->_helper->getConfig('easymarketingsection/easymarketingassign/setproductnamebeforemappedname')) {
+                        $name = $item->getName() . " " . $name;
+                    }
                 }
                 $product['name'] = $name;
 
