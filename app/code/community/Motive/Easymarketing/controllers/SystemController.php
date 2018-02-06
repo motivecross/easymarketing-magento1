@@ -4,8 +4,6 @@ class Motive_Easymarketing_SystemController extends Mage_Core_Controller_Front_A
 {
     protected $_helper;
 
-    public $jsonParameters = JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
-
     protected $_getUrl = 'https://api.easymarketing.de/site_verification_data';
 
     protected $_performUrl = 'https://api.easymarketing.de/perform_site_verification';
@@ -16,7 +14,7 @@ class Motive_Easymarketing_SystemController extends Mage_Core_Controller_Front_A
 
     protected function sendResponse($result) {
         $this->getResponse()->setHeader('Content-type', 'application/json; charset=utf-8');
-        $this->getResponse()->setBody(json_encode($result, $this->jsonParameters));
+        $this->getResponse()->setBody(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
     public function savegoogleverificationAction() {

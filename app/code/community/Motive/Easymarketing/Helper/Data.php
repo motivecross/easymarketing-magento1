@@ -3,8 +3,6 @@
 class Motive_Easymarketing_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
-    public $jsonParameters = JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
-
     public function log($message) {
         Mage::log($message, 6, 'easymarketing-api.log');
     }
@@ -124,7 +122,7 @@ class Motive_Easymarketing_Helper_Data extends Mage_Core_Helper_Abstract
         if(empty($paramsArray)) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         } else {
-            $data_string = json_encode($paramsArray, $this->jsonParameters);
+            $data_string = json_encode($paramsArray, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
         }

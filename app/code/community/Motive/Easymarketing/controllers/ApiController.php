@@ -4,15 +4,13 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 {
     protected $_helper;
 
-    public $jsonParameters = JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE;
-
     public function preDispatch() {
         $this->_helper = Mage::helper('easymarketing');
     }
 
     protected function sendResponse($result) {
         $this->getResponse()->setHeader('Content-type', 'application/json; charset=utf-8');
-        $this->getResponse()->setBody(json_encode($result, $this->jsonParameters));
+        $this->getResponse()->setBody(json_encode($result, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
     }
 
     protected function getMappedConfig($field, $product) {
