@@ -191,18 +191,18 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
                 $productId = $item->getId();
 
                 $parentIDs = Mage::getModel('catalog/product_type_configurable')->getParentIdsByChild($productId);
+                if(!empty($parentIDs)) {
+                    $parentProduct = Mage::getModel('catalog/product')->load($parentIDs[0]);
+                }
 
                 // Check if product is available
                 $websiteIds = $item->getWebsiteIds();
                 $categoryIds = $item->getCategoryIds();
                 $productUrl = $item->getProductUrl();
-                if(empty($websiteIds) || empty($categoryIds) || $item->getVisibility() == 1) {
-                    if(!empty($parentIDs)) {
-                        $parentProduct = Mage::getModel('catalog/product')->load($parentIDs[0]);
-                        $websiteIds = $parentProduct->getWebsiteIds();
-                        $categoryIds = $parentProduct->getCategoryIds();
-                        $productUrl = $parentProduct->getProductUrl();
-                    }
+                if((empty($websiteIds) || empty($categoryIds) || $item->getVisibility() == 1) && !empty($parentIDs)) {
+                    $websiteIds = $parentProduct->getWebsiteIds();
+                    $categoryIds = $parentProduct->getCategoryIds();
+                    $productUrl = $parentProduct->getProductUrl();
                 }
 
                 $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($item);
@@ -279,6 +279,11 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
                 if($item->getImage() == 'no_selection') {
                     $product['image_url'] = '';
+                    if(!empty($parentIDs)) {
+                        if($parentProduct->getImage() != 'no_selection') {
+                            $product['image_url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'catalog/product' . $parentProduct->getImage();
+                        }
+                    }
                 } else {
                     $product['image_url'] = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA) . 'catalog/product' . $item->getImage();
                 }
