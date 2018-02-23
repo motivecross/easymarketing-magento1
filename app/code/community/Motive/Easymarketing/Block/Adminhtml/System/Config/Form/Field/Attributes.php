@@ -47,7 +47,7 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Field_Attributes e
         }
 
         $html .= '</ul></div></td></tr></tbody></table>';
-        $html .= '<br><div><span style="display: inline-block; width: 30%;">Standardwert: </span><input id="' . $element->getId() . '_default" type="text" style="width:70%;" value="' . $defaultValue . '"></span><br><br>';
+        $html .= '<br><div><span style="display: inline-block; width: 30%;">' . $this->__("Default Value") . ': </span><input id="' . $element->getId() . '_default" type="text" style="width:70%;" value="' . $defaultValue . '"></span><br><br>';
         $html .= '<div style="display:none;">' . $element->getElementHtml() . '</div>';
         $html .= '<script type="text/javascript">
                         document.observe("dom:loaded", function() {

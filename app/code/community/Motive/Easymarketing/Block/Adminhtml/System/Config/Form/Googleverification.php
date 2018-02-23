@@ -37,7 +37,7 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Googleverification
         $button = $this->getLayout()->createBlock('adminhtml/widget_button')->setData(
             [
                 'id' => 'verification_button',
-                'label' => __('Google Site Verification durchführen / aufheben'),
+                'label' => __('Enable / Disable Google Site Verification'),
             ]
         );
 

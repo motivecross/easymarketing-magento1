@@ -17,7 +17,7 @@
 
             <groups>
                 <easmarketinggeneral translate="label" module="easymarketing" sortOrder="10">
-                    <label>Allgemein</label>
+                    <label>General</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
@@ -26,7 +26,7 @@
 
                     <fields>
                         <enable translate="label">
-                            <label>Aktiviert</label>
+                            <label>Enabled</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>10</sort_order>
@@ -58,7 +58,7 @@
                         </shop_token>
                         <access_token translate="label">
                             <label>Access Token</label>
-                            <comment>Bitte kopieren Sie diesen Token von Ihrem Easymarketing Account.</comment>
+                            <comment>Please enter Access Token received from emarketing</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
@@ -66,7 +66,7 @@
                             <show_in_store>0</show_in_store>
                         </access_token>
                         <rootcategory translate="label">
-                            <label>Root Kategorie</label>
+                            <label>Root Category</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>easymarketing/system_config_source_categorylist</source_model>
@@ -76,7 +76,7 @@
                             <show_in_store>0</show_in_store>
                         </rootcategory>
                         <shipping_countries translate="label">
-                            <label>Länderkürzel zum Versand</label>
+                            <label>Country Code Shipping</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>60</sort_order>
@@ -95,7 +95,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_googleverification</frontend_model>
                         </google_verification>
                         <google_tracking_enable translate="label">
-                            <label>Google Tracking Aktivieren</label>
+                            <label>Activate Google Tracking</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>80</sort_order>
@@ -105,7 +105,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </google_tracking_enable>
                         <google_remarketing_enable translate="label">
-                            <label>Google Remarketing Aktivieren</label>
+                            <label>Activate Google Remarketing</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>90</sort_order>
@@ -115,7 +115,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </google_remarketing_enable>
                         <facebook_tracking_enable translate="label">
-                            <label>Facebook Tracking Aktivieren</label>
+                            <label>Activate Facebook Tracking</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>100</sort_order>
@@ -127,7 +127,7 @@
                     </fields>
                 </easmarketinggeneral>
                 <easymarketingassign translate="label" module="easymarketing">
-                    <label>Felderzuordnung</label>
+                    <label>Attribute Mapping</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
@@ -136,7 +136,7 @@
 
                     <fields>
                         <name translate="label">
-                            <label>name</label>
+                            <label>Product Title</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
@@ -146,7 +146,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </name>
                         <setproductnamebeforemappedname>
-                            <label>Produktnamen vor manuell ausgewählte Attribute setzen</label>
+                            <label>Insert Product Title before manually selected Attributes</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>11</sort_order>
@@ -156,7 +156,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </setproductnamebeforemappedname>
                         <useshortdescription translate="label">
-                            <label>Kurzbeschreibung verwenden</label>
+                            <label>Use Short Description</label>
                             <comment></comment>
                             <frontend_type>select</frontend_type>
                             <sort_order>20</sort_order>
@@ -166,7 +166,7 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                         </useshortdescription>
                         <gtin translate="label">
-                            <label>gtin</label>
+                            <label>GTIN (i.e. UPC)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>30</sort_order>
@@ -176,7 +176,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </gtin>
                         <condition translate="label">
-                            <label>condition</label>
+                            <label>Condition (new, refurbished, used)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>40</sort_order>
@@ -186,7 +186,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </condition>
                         <google_category translate="label">
-                            <label>google_category</label>
+                            <label>Google Shopping Category</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>50</sort_order>
@@ -196,7 +196,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </google_category>
                         <adult translate="label">
-                            <label>adult</label>
+                            <label>Product is adult only</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>60</sort_order>
@@ -206,7 +206,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </adult>
                         <brand translate="label">
-                            <label>brand</label>
+                            <label>Brand/Manufacturer</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>70</sort_order>
@@ -216,7 +216,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </brand>
                         <mpn translate="label">
-                            <label>mpn</label>
+                            <label>MPN (Manufacturer Part Number)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>80</sort_order>
@@ -226,7 +226,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </mpn>
                         <unit_pricing_measure translate="label">
-                            <label>unit_pricing_measure</label>
+                            <label>Unit Pricing Measure</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
@@ -236,7 +236,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </unit_pricing_measure>
                         <unit_pricing_base_measure translate="label">
-                            <label>unit_pricing_base_measure</label>
+                            <label>Unit Pricing Base Measure</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>100</sort_order>
@@ -246,7 +246,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </unit_pricing_base_measure>
                         <gender translate="label">
-                            <label>gender</label>
+                            <label>Gender of Target Group</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>110</sort_order>
@@ -256,7 +256,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </gender>
                         <age_group translate="label">
-                            <label>age_group</label>
+                            <label>Age Group (of Target Group)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>120</sort_order>
@@ -266,7 +266,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </age_group>
                         <color translate="label">
-                            <label>color</label>
+                            <label>Color</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>130</sort_order>
@@ -276,7 +276,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </color>
                         <size translate="label">
-                            <label>size</label>
+                            <label>Size</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>140</sort_order>
@@ -286,7 +286,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </size>
                         <size_type translate="label">
-                            <label>size_type</label>
+                            <label>Size Type (for Fashion only)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>150</sort_order>
@@ -296,7 +296,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </size_type>
                         <size_system translate="label">
-                            <label>size_system</label>
+                            <label>Size System (for Fashion only)</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>160</sort_order>
@@ -306,7 +306,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </size_system>
                         <material translate="label">
-                            <label>material</label>
+                            <label>Material</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>170</sort_order>
@@ -316,7 +316,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </material>
                         <pattern translate="label">
-                            <label>pattern</label>
+                            <label>Pattern</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>180</sort_order>
@@ -326,7 +326,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </pattern>
                         <free_1 translate="label">
-                            <label>free_1</label>
+                            <label>Custom label 1</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>190</sort_order>
@@ -336,7 +336,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </free_1>
                         <free_2 translate="label">
-                            <label>free_2</label>
+                            <label>Custom label 2</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>200</sort_order>
@@ -346,7 +346,7 @@
                             <frontend_model>easymarketing/adminhtml_system_config_form_field_attributes</frontend_model>
                         </free_2>
                         <free_3 translate="label">
-                            <label>free_3</label>
+                            <label>Custom label 3</label>
                             <comment></comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>210</sort_order>
