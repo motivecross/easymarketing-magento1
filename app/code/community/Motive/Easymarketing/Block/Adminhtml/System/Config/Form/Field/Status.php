@@ -17,7 +17,7 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Field_Status exten
         $html = '<div>';
 
         if(!$this->_helper->getConfig('easymarketingsection/easmarketinggeneral/enable')) {
-            $html .= "Modul nicht aktiviert";
+            $html .= $this->__('Module not activated');
         } else {
 
             try {
@@ -26,7 +26,7 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Field_Status exten
                 if($currentStatus == 0) {
                     $lastErrors = $this->_helper->dbFetchOne('configuration_last_errors');
                     if(empty($lastErrors)) {
-                        $html .= 'Konfiguration fehlerhaft.';
+                        $html .= $this->__('Configuration faulty');
                     } else {
                         $html .= '- ' . str_replace(', ', '<br>- ', $lastErrors);
                     }
@@ -42,21 +42,21 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Field_Status exten
 
                     if($result['http_status'] == '401') {
                         $this->_helper->log('Wrong Access Token');
-                        $html .= 'Wrong Access Token';
+                        $html .= $this->__('Wrong Access Token');
 
                     } elseif($result['http_status'] == '200') {
                         $this->_helper->log($result['content']);
                         $resultArray = json_decode($result['content'], true);
                         if($resultArray['api_properly_setup_at'] > 1) {
-                            $html .= 'Erfolgreich eingerichtet.';
-                            $html .= '<br>Kategorien indexiert: ' . $resultArray['num_categories'];
-                            $html .= '<br>Produkte indexiert: ' . $resultArray['num_products'];
+                            $html .= $this->__('Set up successful!');
+                            $html .= '<br>' . $this->__('Indexed categories') . ': ' . $resultArray['num_categories'];
+                            $html .= '<br>' . $this->__('Indexed products') . ': ' . $resultArray['num_products'];
                             if(empty($resultArray['updated_at'])) {
-                                $lastIndexed = "Nie";
+                                $lastIndexed = $this->__('Never');
                             } else {
                                 $lastIndexed = date('d.m.Y H:i:s', $resultArray['updated_at']);
                             }
-                            $html .= '<br>Letzte Indexierung: ' . $lastIndexed;
+                            $html .= '<br>' . $this->__('Last indexed') . ': ' . $lastIndexed;
                         }
                     } elseif($result['http_status'] == '400') {
                         $resultArray = json_decode($result['content'], true);
@@ -65,7 +65,7 @@ class Motive_Easymarketing_Block_Adminhtml_System_Config_Form_Field_Status exten
 
                     } else {
                         $this->_helper->log('Unknown HTTP Response');
-                        $html .= "Unknown HTTP Response";
+                        $html .= $this->__('Unknown HTTP Response');
                     }
 
                     $this->_helper->log('Call extraction_status END');

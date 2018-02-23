@@ -86,7 +86,7 @@ class Motive_Easymarketing_ApiController extends Mage_Core_Controller_Front_Acti
 
             $category = Mage::getModel('catalog/category')->load($params['id']);
             if(!$category->getId()) {
-                $this->_helper->sendErrorAndExit('Keine Kategorie mit dieser ID');
+                $this->_helper->sendErrorAndExit('No category with this ID');
             }
 
             $children = $category->getChildren();

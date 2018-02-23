@@ -42,11 +42,11 @@ class Motive_Easymarketing_Helper_Data extends Mage_Core_Helper_Abstract
     public function apiStart() {
 
         if(!$this->getConfig('easymarketingsection/easmarketinggeneral/enable')) {
-            $this->sendErrorAndExit('Modul nicht aktiviert');
+            $this->sendErrorAndExit('Module not activated');
         }
 
         if(!$this->checkShoptoken()) {
-            $this->sendErrorAndExit('Falscher Shop Token');
+            $this->sendErrorAndExit('Wrong Shop Token');
         }
     }
 
@@ -55,7 +55,7 @@ class Motive_Easymarketing_Helper_Data extends Mage_Core_Helper_Abstract
         foreach($params as $param) {
             $value = $this->getParam($param);
             if(empty($value) && $value !== 0 && $value !== '0') {
-                $this->sendErrorAndExit('Nicht genügend Parameter');
+                $this->sendErrorAndExit('Not enough parameters');
             } else {
                 $returnArray[$param] = $value;
             }

@@ -22,6 +22,15 @@
                 </easymarketing>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <Motive_Easymarketing>
+                    <files>
+                        <default>Motive_Easymarketing.csv</default>
+                    </files>
+                </Motive_Easymarketing>
+            </modules>
+        </translate>
     </frontend>
     <global>
         <blocks>
@@ -85,6 +94,15 @@
                 </admin>
             </resources>
         </acl>
+        <translate>
+            <modules>
+                <Motive_Easymarketing>
+                    <files>
+                        <default>Motive_Easymarketing.csv</default>
+                    </files>
+                </Motive_Easymarketing>
+            </modules>
+        </translate>
     </adminhtml>
     <config>
         <default>

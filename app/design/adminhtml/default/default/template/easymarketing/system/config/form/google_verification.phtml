@@ -2,36 +2,40 @@
 <span style="display: inline-block; position: absolute; margin-top: 3px; margin-left: 10px;"><img id="googleverificationstatus" src="<?php echo $this->getCurrentStatusImage() ?>"></span>
 
 <script>
+
+    var confirmText = "";
+
     document.observe("dom:loaded", function() {
         Event.observe("verification_button", "click", function() {
 
-            var confirmTextEnable = "Ich stimme zu, dass Google easymarketing bei meiner URL-Verifikation als weiteren \"Inhaber\" einträgt, damit easymarketing meine Daten für Google Shopping über die Schnittstelle pflegen und auslesen kann. Ich kann diese Zustimmung natürlich jederzeit widerrufen. easymarketing wird meine Daten unter keinen Umständen zu anderen Zwecken als meiner Kampagnen-Steuerung verwenden, weitergeben oder bei sich speichern.\n\nBei Durchführung der Verification wird der Magento Cache geleert.";
-            var confirmTextDisable = "Bei Aufhebung der Verifikation wird der Magento Cache geleert.";
+            var confirmTextEnable = '<?php echo $this->__('I agree on adding emarketing as additional &quot;owner&quot; when enabling the Google Site Verification. This is required for authorizing emarketing to import my product data through the API. Of course I can revoke this consent at any time. Under no circumstances will emarketing use, share or save my data for purposes other than my campaign control.\n\nWhen performing the verification, the Magento Cache will be flushed.'); ?>';
+            var confirmTextDisable = '<?php echo $this->__('When the Verification is revoked, the Magento Cache will be flushed.'); ?>';
 
             <?php if(!$this->getCurrentStatus()) { ?>
-            var confirmText = confirmTextEnable;
+                confirmText = confirmTextEnable;
             <?php } else { ?>
-            var confirmText = confirmTextDisable;
+                confirmText = confirmTextDisable;
             <?php } ?>
 
-            if(confirm(confirmText)) {
+            if(confirm(confirmText.replace(/&quot;/g, '\"'))) {
                 new Ajax.Request('<?php echo $this->getVerificationUrl() ?>', {
                     method: 'get',
                     onComplete: function(response) {
                         var responseObj = response.responseJSON;
                         if(responseObj.status == 0) {
-                            alert("Falscher Access Token.");
+                            alert("<?php echo $this->__('Wrong Access Token.'); ?>");
                         } else if(responseObj.status == 1) {
                             alert(responseObj.errors.join('<br>'));
                         } else if(responseObj.status == 2) {
                             $('googleverificationstatus').setAttribute('src', '<?php echo $this->getSuccessImage() ?>');
-                            alert('Google Verification erfolgreich.');
+                            alert("<?php echo $this->__('Google Verification successful.'); ?>");
                             confirmText = confirmTextDisable;
                         } else if(responseObj.status == 3) {
                             $('googleverificationstatus').setAttribute('src', '<?php echo $this->getFailImage() ?>');
-                            alert('Google Verification deaktiviert.')
+                            alert("<?php echo $this->__('Google Verification disabled.'); ?>");
                             confirmText = confirmTextEnable;
                         }
+                        location.reload();
                     }
                 });
             }
